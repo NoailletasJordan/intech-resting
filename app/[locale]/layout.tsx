@@ -22,10 +22,16 @@ export const metadata: Metadata = {
 
 interface Props {
   children: ReactNode
-  params: { locale?: string }
+  params: Promise<{ locale?: string }>
 }
 
-export default async function Layout({ children, params }: Props) {
+export default async function Layout(props: Props) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const resolvedParams = params
 
   const locale = ((resolvedParams && resolvedParams.locale) || 'en') as TLOCALE
