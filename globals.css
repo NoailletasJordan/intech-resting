@@ -1,0 +1,127 @@
+@import 'tailwindcss';
+
+@theme {
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  --font-sans:
+    DMSans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-display: BarlowCondensed;
+  --font-junni: junni;
+
+  --color-border: var(--border);
+  --color-border-active: var(--border-active);
+  --color-surface-light: var(--surface-light);
+  --color-surface-lighter: var(--surface-lighter);
+  --color-background-line: var(--background-line);
+  --color-background: var(--background);
+  --color-background-opposite: var(--background-opposite);
+  --color-background-dark: var(--background-dark);
+  --color-background-primary: var(--background-primary);
+  --color-primary: var(--primary);
+  --color-primary-opposite: var(--primary-opposite);
+  --color-text: var(--text);
+  --color-text-opposite: var(--text-opposite);
+  --color-text-subtle: var(--text-subtle);
+  --color-text-light: var(--text-light);
+  --color-text-light-opposite: var(--text-light-opposite);
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@layer base {
+  @font-face {
+    font-family: 'DMSans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/DMSans-Regular.woff2) format('woff2');
+  }
+
+  @font-face {
+    font-family: 'DMSans';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(/fonts/DMSans-SemiBold.woff2) format('woff2');
+  }
+
+  @font-face {
+    font-family: 'BarlowCondensed';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(/fonts/BarlowCondensed-SemiBold.woff2) format('woff2');
+    ascent-override: 85%;
+    descent-override: 25%;
+    line-gap-override: 0%;
+  }
+
+  @font-face {
+    font-family: 'junni';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/fonts/junni.ttf) format('truetype');
+    ascent-override: 90%;
+    descent-override: 10%;
+    line-gap-override: 0%;
+  }
+}
+
+@layer utilities {
+  :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground-rgb: 255, 255, 255;
+      --background-start-rgb: 0, 0, 0;
+      --background-end-rgb: 0, 0, 0;
+    }
+  }
+}
+
+body {
+  background-color: #111;
+}
