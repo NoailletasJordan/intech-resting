@@ -1,10 +1,10 @@
 import { themeIntechResting } from '@/components/pageComponents/ThemeHandler/constants'
 import { getLocaledIntechRestingHomeUrl, TLOCALE } from '@/constants'
+import locales from '@/locales'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { useRive, useStateMachineInput } from '@rive-app/react-canvas'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import locales from '../../../../../../locales'
 
 interface Props {
   currentLocale: TLOCALE

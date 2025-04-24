@@ -1,3 +1,4 @@
+'use client'
 import { HTMLMotionProps, motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 

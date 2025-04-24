@@ -1,3 +1,5 @@
+'use client'
+
 import Button from '@/components/common/Button'
 import Github from '@/components/common/Icons/Github'
 import Language2 from '@/components/common/Icons/Language2'
@@ -6,11 +8,9 @@ import Share from '@/components/common/Icons/Share'
 import Twitter from '@/components/common/Icons/Twitter'
 import { themeIntechResting } from '@/components/pageComponents/ThemeHandler/constants'
 import { TLOCALE } from '@/constants'
+import locales from '@/locales'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import locales from '../../../../locales'
 import DropDownMenu from './components/DropDownMenu'
 import Profile from './components/Profile'
 
@@ -21,26 +21,19 @@ interface Props {
     linkedin: string
     github: string
   }
-  portfolioLink: string
+  portfolioUrl: string
   oppositeLocalePath: string
 }
 
 export default function HeaderLG({
   currentLocale,
-  portfolioLink,
+  portfolioUrl,
   socials,
   oppositeLocalePath,
 }: Props) {
-  const router = useRouter()
-  const triggerAnimationOnlyOnHome = !router.asPath.includes('/post')
-
-  useEffect(() => {
-    router.prefetch(oppositeLocalePath)
-  }, [oppositeLocalePath])
-
   return (
     <motion.header
-      initial={{ opacity: triggerAnimationOnlyOnHome ? 1 : 1 }}
+      initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
         transition: { delay: 0.2, duration: 0.6, ease: 'easeOut' },
@@ -104,7 +97,7 @@ export default function HeaderLG({
               },
             ]}
           />
-          <Link href={portfolioLink}>
+          <Link href={portfolioUrl}>
             <Button onlyVisual className="rounded-full px-3">
               {locales[currentLocale].visit_portfolio}
             </Button>

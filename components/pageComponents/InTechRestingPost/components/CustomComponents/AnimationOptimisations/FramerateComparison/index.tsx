@@ -1,3 +1,5 @@
+'use client'
+
 import Button from '@/components/common/Button'
 import Space from '@/components/common/Space'
 import { languageContext } from '@/contexts/language-context'

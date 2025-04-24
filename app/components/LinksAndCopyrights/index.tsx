@@ -1,3 +1,5 @@
+'use client'
+
 import Button from '@/components/common/Button'
 import CopyClipboard from '@/components/common/Icons/CopyClipboard'
 import CopyClipboardChecked from '@/components/common/Icons/CopyClipboardChecked'
@@ -10,7 +12,8 @@ import { useClipboard } from '@mantine/hooks'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { use } from 'react'
-import locales from '../../pageComponents/IntechRestingHome/locales'
+import locales from '../../../locales'
+
 export default function LinksAndCopyrights() {
   const currentLocale = use(languageContext)
   const clipboard = useClipboard({ timeout: 2500 })

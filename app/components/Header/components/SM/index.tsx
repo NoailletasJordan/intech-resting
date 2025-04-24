@@ -1,19 +1,19 @@
 import Button from '@/components/common/Button'
+import ExternalLink from '@/components/common/Icons/ExtermalLink'
 import Github from '@/components/common/Icons/Github'
+import Language from '@/components/common/Icons/Language'
 import LinkedIn from '@/components/common/Icons/Linkedin'
 import Twitter from '@/components/common/Icons/Twitter'
-import locales from '@/components/pageComponents/IntechRestingHome/locales'
+import Separator from '@/components/common/Separator'
+import { VerticalSpace } from '@/components/pageComponents/InTechRestingPost/components/VerticalSpacer'
 import { CSSVAR } from '@/components/pageComponents/ThemeHandler/constants'
 import { getLocaledIntechRestingHomeUrl, TLOCALE } from '@/constants'
+import locales from '@/locales'
 import { useDisclosure } from '@mantine/hooks'
 import { motion, Variants } from 'framer-motion'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import ExternalLink from '../../../../../../common/Icons/ExtermalLink/index'
-import Language from '../../../../../../common/Icons/Language/index'
-import Separator from '../../../../../../common/Separator/index'
-import { VerticalSpace } from '../../../../../InTechRestingPost/components/VerticalSpacer/index'
 import MenuButton from './components/MenuButton'
+
 interface Props {
   currentLocale: TLOCALE
   socials: {
@@ -21,18 +21,17 @@ interface Props {
     linkedin: string
     github: string
   }
-  portfolioLink: string
+  portfolioUrl: string
   oppositeLocalePath: string
 }
 
 export default function HeaderSM({
   currentLocale,
-  portfolioLink,
+  portfolioUrl,
   socials,
   oppositeLocalePath,
 }: Props) {
   const [isOpen, { toggle }] = useDisclosure(false)
-  const router = useRouter()
 
   const variants: Variants = {
     open: {
@@ -58,7 +57,7 @@ export default function HeaderSM({
         animate={isOpen ? 'open' : 'closed'}
       >
         <div className="relative flex size-full flex-col content-center items-center justify-center">
-          <Link href={portfolioLink}>
+          <Link href={portfolioUrl}>
             <Button
               onlyVisual
               className="absolute top-12 left-4 flex items-center gap-x-2"

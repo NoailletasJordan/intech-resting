@@ -31,16 +31,17 @@ export function getPreferredLanguage(
   return 'en'
 }
 
-export const getNONLocalIntechRestingHomeUrl = () => `/intech-resting`
-export const getLocaledIntechRestingHomeUrl = (locale: TLOCALE) =>
-  `/${locale}/intech-resting`
+export const getLocaledPortfolioUrl = (locale: TLOCALE) =>
+  `https://jordannoailletas.com/${locale}`
+export const getNONLocalIntechRestingHomeUrl = () => '/'
+export const getLocaledIntechRestingHomeUrl = (locale: TLOCALE) => `/${locale}`
 
 export const getNONLocaledIntechRestingPostUrl = ({
   postId,
 }: {
   postId: string
-}) => `/intech-resting/post/${postId}`
+}) => `/post/${postId}`
 export const getLocaledIntechRestingPostUrl = (
   locale: TLOCALE,
   postId: string,
-) => `/${locale}/intech-resting/post/${postId}`
+) => `/${locale}/post/${postId}`

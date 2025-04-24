@@ -1,48 +1,47 @@
-import { LOCALES, TLOCALE } from '@/constants'
-import { useRouter } from 'next/router'
-import { useEffect, useMemo } from 'react'
+'use client'
+
+import {
+  getLocaledIntechRestingHomeUrl,
+  getLocaledPortfolioUrl,
+  LOCALES,
+} from '@/constants'
+import { languageContext } from '@/contexts/language-context'
+import { useRouter } from 'next/navigation'
+import { use, useEffect, useMemo } from 'react'
 import HeaderLG from './components/LG'
 import HeaderSM from './components/SM'
 
-interface Props {
-  currentLocale: TLOCALE
-}
 const socials = {
   twitter: 'https://x.com/jordanndotdev',
   linkedin: 'https://www.linkedin.com/in/jo-noa',
   github: 'https://github.com/NoailletasJordan',
 }
 
-export default function Header({ currentLocale }: Props) {
+export default function Header() {
+  const currentLocale = use(languageContext)
   const router = useRouter()
 
   const oppositeLocalePath = useMemo(() => {
-    LOCALES.find((locale) => locale !== currentLocale)!
-    const currentPath = router.asPath
     const oppositeLocale = LOCALES.find((locale) => locale !== currentLocale)!
-    const newPath = currentPath.replace(
-      `/${currentLocale}/`,
-      `/${oppositeLocale}/`,
-    )
-    return newPath
+    return getLocaledIntechRestingHomeUrl(oppositeLocale)
   }, [currentLocale])
 
   useEffect(() => {
     router.prefetch(oppositeLocalePath)
-  }, [oppositeLocalePath])
+  }, [oppositeLocalePath, router])
 
-  const portfolioLink = `/${currentLocale}/`
+  const portfolioUrl = getLocaledPortfolioUrl(currentLocale)
 
   return (
     <>
       <HeaderLG
-        portfolioLink={portfolioLink}
+        portfolioUrl={portfolioUrl}
         currentLocale={currentLocale}
         socials={socials}
         oppositeLocalePath={oppositeLocalePath}
       />
       <HeaderSM
-        portfolioLink={portfolioLink}
+        portfolioUrl={portfolioUrl}
         currentLocale={currentLocale}
         socials={socials}
         oppositeLocalePath={oppositeLocalePath}

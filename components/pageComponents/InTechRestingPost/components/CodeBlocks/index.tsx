@@ -1,3 +1,5 @@
+'use client'
+
 import Separator from '@/components/common/Separator'
 import Space from '@/components/common/Space'
 import DynamicToggleGroup from '@/components/pageComponents/InTechRestingPost/components/CodeBlocks/components/DynamicToggleGroup'

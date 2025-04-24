@@ -1,3 +1,5 @@
+'use client'
+
 import ThinArrowRight from '@/components/common/Icons/ThinArrowRight'
 import { CSSVAR } from '@/components/pageComponents/ThemeHandler/constants'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'

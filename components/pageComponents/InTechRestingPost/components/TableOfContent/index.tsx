@@ -1,5 +1,7 @@
-import locales from '@/components/pageComponents/IntechRestingHome/locales'
+'use client'
+
 import { TLOCALE } from '@/constants'
+import locales from '@/locales'
 import { useCallback, useEffect, useState } from 'react'
 import TableSectionHeader, {
   anchorOffset,
@@ -18,13 +20,12 @@ interface Props {
 }
 
 export default function TableOfContent({ data, currentLocale }: Props) {
-  'use no memo'
   const domElements = useHeadersDom(data)
   const activeIndex = useActiveIndexOnScroll(domElements)
 
   return (
     <aside className="w-[300px]">
-      <div className="font-semibold tracking-widest text-text-light">
+      <div className="text-text-light font-semibold tracking-widest">
         {locales[currentLocale]['table_of_content']}
       </div>
 

@@ -1,23 +1,16 @@
 import Rhombus from '@/components/common/Icons/Rhombus'
-import Separator from '@/components/common/Separator'
 import { LOCALES } from '@/constants'
+import locales from '@/locales'
 import * as contentful from 'contentful'
 import { ReactNode } from 'react'
-import LinksAndCopyrights from '../../common/LinksAndCopyrights'
-import {
-  BlogStyles,
-  VerticalSpace,
-} from '../InTechRestingPost/components/VerticalSpacer'
-import ThemeHandler from '../ThemeHandler'
-import { CSSVAR, themeIntechResting } from '../ThemeHandler/constants'
+import { VerticalSpace } from '../InTechRestingPost/components/VerticalSpacer'
+import { CSSVAR } from '../ThemeHandler/constants'
 import EntranceWrapper from './components/EntranceWrapper'
 import FeaturedVideos from './components/FeaturedVideos'
-import Header from './components/Header'
 import Hero from './components/Hero'
 import PostsOverview, {
   PartialContentfulFields,
 } from './components/PostsOverview'
-import locales from './locales'
 export interface Props {
   currentLocale: (typeof LOCALES)[number]
   items: contentful.EntryCollection<
@@ -32,59 +25,47 @@ const containerClasses = 'max-w-[1000px] mx-auto px-4 max-sm:px-0'
 
 export default function IntechRestingHome({ items, currentLocale }: Props) {
   return (
-    <ThemeHandler styleConfig={themeIntechResting}>
-      <BlogStyles>
-        <div className="bg-background text-text min-h-[100svh] w-[100vw]">
-          <Header currentLocale={currentLocale} />
-          <VerticalSpace times={4} />
-          <Container>
-            <Hero />
-            <VerticalSpace times={3} />
-            <EntranceWrapper>
-              <div className="flex justify-center">
-                <div className="flex size-[7cqw] items-center justify-center">
-                  <Rhombus currentColor={CSSVAR['--color-primary']} />
-                </div>
-              </div>
-            </EntranceWrapper>
-            <VerticalSpace times={2} />
-            <EntranceWrapper>
-              <div className="flex justify-center">
-                <div className="text-text-light max-w-[400px] text-center text-[110%] font-normal">
-                  Intech' Resting - Du contenu pour les devs qui aiment faire
-                  les choses bien.
-                </div>
-              </div>
-            </EntranceWrapper>
-            <VerticalSpace times={2} />
-            <EntranceWrapper>
-              <SectionSeparator
-                title={locales[currentLocale]['videos_section_title']}
-              />
-              <FeaturedVideos currentLocale={currentLocale} />
-            </EntranceWrapper>
-            <div className={containerClasses}>
-              <EntranceWrapper>
-                <SectionSeparator
-                  title={locales[currentLocale]['posts_section_title']}
-                />
-                <PostsOverview
-                  currentLocale={currentLocale}
-                  items={items}
-                  postsClassName={PX}
-                />
-              </EntranceWrapper>
-              <VerticalSpace times={2} />
-            </div>
-            <VerticalSpace times={2} />
-          </Container>
-          <Separator />
-          <div className="mx-auto max-w-[1000px] px-4 max-sm:px-0">
-            <LinksAndCopyrights />
+    <Container>
+      <Hero />
+      <VerticalSpace times={3} />
+      <EntranceWrapper>
+        <div className="flex justify-center">
+          <div className="flex size-[7cqw] items-center justify-center">
+            <Rhombus currentColor={CSSVAR['--color-primary']} />
           </div>
         </div>
-      </BlogStyles>
-    </ThemeHandler>
+      </EntranceWrapper>
+      <VerticalSpace times={2} />
+      <EntranceWrapper>
+        <div className="flex justify-center">
+          <div className="text-text-light max-w-[400px] text-center text-[110%] font-normal">
+            Intech' Resting - Du contenu pour les devs qui aiment faire les
+            choses bien.
+          </div>
+        </div>
+      </EntranceWrapper>
+      <VerticalSpace times={2} />
+      <EntranceWrapper>
+        <SectionSeparator
+          title={locales[currentLocale]['videos_section_title']}
+        />
+        <FeaturedVideos />
+      </EntranceWrapper>
+      <div className={containerClasses}>
+        <EntranceWrapper>
+          <SectionSeparator
+            title={locales[currentLocale]['posts_section_title']}
+          />
+          <PostsOverview
+            currentLocale={currentLocale}
+            items={items}
+            postsClassName={PX}
+          />
+        </EntranceWrapper>
+        <VerticalSpace times={2} />
+      </div>
+      <VerticalSpace times={2} />
+    </Container>
   )
 }
 
@@ -106,5 +87,9 @@ function SectionSeparator({ title }: { title: string }) {
 }
 
 function Container({ children }: { children: ReactNode }) {
-  return <div className="@container mx-auto max-w-[800px] px-4">{children}</div>
+  return (
+    <div className="@container mx-auto w-full max-w-[800px] px-4">
+      {children}
+    </div>
+  )
 }

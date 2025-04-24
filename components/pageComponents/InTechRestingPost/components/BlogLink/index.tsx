@@ -1,3 +1,5 @@
+'use client'
+
 import ExternalLink from '@/components/common/Icons/ExtermalLink'
 import { CSSVAR } from '@/components/pageComponents/ThemeHandler/constants'
 import { useDisclosure } from '@mantine/hooks'
@@ -31,8 +33,6 @@ export default function BlogLink({
 
   return (
     <Link
-      // https://nextjs.org/docs/messages/react-hydration-error#solution-3-using-suppresshydrationwarning
-      suppressHydrationWarning
       ref={setAnchorDOM}
       href={url}
       target={forceOpenSamePage ? '' : '_blank'}

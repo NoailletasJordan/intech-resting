@@ -1,3 +1,5 @@
+'use client'
+
 import { TLOCALE } from '@/constants'
 import { createContext } from 'react'
 

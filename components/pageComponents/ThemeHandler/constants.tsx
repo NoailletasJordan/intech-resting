@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-
 const LIGHT_BACKGROUND = '#f0f0f0'
 const LIGHT_PRIMARY = '#b8de16'
 const LIGHT_TEXT = '#666'
@@ -48,33 +46,3 @@ export const CSSVAR = Object.keys(themeDark).reduce(
 ) as Record<keyof typeof themeDark, string>
 
 export type ThemeOverwrite = Partial<Record<keyof typeof themeDark, string>>
-
-export function useComputedCssVariables<T extends (keyof ThemeOverwrite)[]>(
-  variableNames: T,
-  domState: HTMLElement | null,
-): Record<T[number], string | null> {
-  const [values, setValues] = useState<Record<T[number], string | null>>(() =>
-    variableNames.reduce<any>((acc, cur) => {
-      acc[cur] = ''
-      return acc
-    }, {}),
-  )
-
-  useEffect(() => {
-    if (!domState) return
-
-    const computedStyle = window.getComputedStyle(domState)
-
-    const computedValues = variableNames.reduce<any>((acc, variableName) => {
-      const computedValue = computedStyle
-        .getPropertyValue(String(variableName))
-        .trim()
-      acc[variableName] = computedValue || null
-      return acc
-    }, {})
-
-    setValues(computedValues)
-  }, [...variableNames, domState])
-
-  return values
-}
