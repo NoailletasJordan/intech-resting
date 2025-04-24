@@ -12,10 +12,12 @@ import { ReactNode } from 'react'
 import '../../globals.css'
 import Header from '../components/Header'
 import LinksAndCopyrights from '../components/LinksAndCopyrights'
-
 export const metadata: Metadata = {
   title: 'InTech Resting',
   description: 'A blog about tech, programming and web development',
+  icons: {
+    icon: '/favicon.png',
+  },
 }
 
 interface Props {
@@ -23,9 +25,8 @@ interface Props {
   params: { locale?: string }
 }
 
-export default async function RootLayout({ children, params }: Props) {
-  const resolvedParams = await params
-  console.log('params:', resolvedParams)
+export default async function Layout({ children, params }: Props) {
+  const resolvedParams = params
 
   const locale = ((resolvedParams && resolvedParams.locale) || 'en') as TLOCALE
 

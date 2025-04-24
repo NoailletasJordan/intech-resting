@@ -20,14 +20,13 @@ interface BlogPostFields {
 }
 
 type PageParams = {
-  params: Promise<{
+  params: {
     slug: string
     locale: TLOCALE
-  }>
+  }
 }
 
-export async function generateMetadata(props: PageParams) {
-  const params = await props.params;
+export async function generateMetadata({ params }: PageParams) {
   const { locale, slug } = params
 
   if (!process.env.CONTENTFUL_SPACE || !process.env.CONTENTFUL_ACCESS_TOKEN) {
@@ -71,15 +70,28 @@ export async function generateMetadata(props: PageParams) {
   }
 }
 
-export function generateStaticParams() {
-  // In a real implementation, we would fetch slugs from Contentful
-  // But since generateStaticParams needs to be synchronous, we'd need a different approach
-  // For now, I'm simplifying this
-  return LOCALES.flatMap((locale) => [{ locale, slug: 'example-slug' }])
-}
+export async function generateStaticParams() {
+  // if (!process.env.CONTENTFUL_SPACE || !process.env.CONTENTFUL_ACCESS_TOKEN) {
+  //   throw new Error(`Contentful env variables not set`)
+  // }
+  const client = contentful.createClient({
+    space: process.env.CONTENTFUL_SPACE!,
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
+  })
 
-export default async function IntechRestingPostPage(props0: PageParams) {
-  const params = await props0.params;
+  const data = await client.getEntries({
+    content_type: 'blogPost',
+    locale: 'fr',
+  })
+
+  const slugs = data.items.map(({ fields }) => fields.slug)
+
+  return LOCALES.flatMap((locale) => slugs.map((slug) => ({ locale, slug })))
+}
+export const dynamicParams = false
+// export const dynamicParams = true // temp
+
+export default async function IntechRestingPostPage({ params }: PageParams) {
   const { locale, slug } = params
 
   if (!process.env.CONTENTFUL_SPACE || !process.env.CONTENTFUL_ACCESS_TOKEN) {
@@ -96,11 +108,6 @@ export default async function IntechRestingPostPage(props0: PageParams) {
     locale,
     'fields.slug': slug,
   })
-
-  if (data.items.length === 0) {
-    // Handle the case where post is not found
-    return <div>Post not found</div>
-  }
 
   const pageData = data.items[0]
 

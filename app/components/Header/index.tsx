@@ -1,12 +1,8 @@
 'use client'
 
-import {
-  getLocaledIntechRestingHomeUrl,
-  getLocaledPortfolioUrl,
-  LOCALES,
-} from '@/constants'
+import { getLocaledPortfolioUrl, LOCALES } from '@/constants'
 import { languageContext } from '@/contexts/language-context'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { use, useEffect, useMemo } from 'react'
 import HeaderLG from './components/LG'
 import HeaderSM from './components/SM'
@@ -20,11 +16,12 @@ const socials = {
 export default function Header() {
   const currentLocale = use(languageContext)
   const router = useRouter()
+  const pathname = usePathname()
 
   const oppositeLocalePath = useMemo(() => {
     const oppositeLocale = LOCALES.find((locale) => locale !== currentLocale)!
-    return getLocaledIntechRestingHomeUrl(oppositeLocale)
-  }, [currentLocale])
+    return pathname.replace(`/${currentLocale}`, `/${oppositeLocale}`)
+  }, [currentLocale, pathname])
 
   useEffect(() => {
     router.prefetch(oppositeLocalePath)
