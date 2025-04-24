@@ -21,7 +21,7 @@ export const metadata = {
   },
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }))
 }
 

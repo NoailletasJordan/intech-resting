@@ -83,53 +83,55 @@ export default function IntechRestingPost({ pageData, currentLocale }: Props) {
 
   const paddindX = 'px-5 max-sm:px-2'
   return (
-    <div className="mx-auto flex max-w-[calc(750px_+_4rem_+_300px_+_4rem)] justify-center px-8 max-sm:px-2">
-      <div className="grid grid-cols-[minmax(auto,750px)_300px] gap-16 max-lg:grid-cols-[minmax(auto,660px)] max-lg:gap-8">
-        <div>
-          <h1 className="mx-[10%] text-center text-[32px] leading-[1.4] font-bold">
-            {pageData.fields.title as string}
-          </h1>
-          <Space className="h-4" />
-          <p className="text-center">
-            <span>{locales[currentLocale]['article_date']}</span>
-            <span className="text-text-light italic">{date}</span>
-          </p>
-          <VerticalSpace times={2} />
-        </div>
-        <div className="max-lg:hidden" />
-        <div>
-          <div id="intro" className={twMerge('@container', paddindX)}>
-            <VerticalSpaceContainer>
-              {documentToReactComponents(bodyWithIds, renderOption)}
-            </VerticalSpaceContainer>
-            <VerticalSpace times={2} />
-            <div className="flex justify-center">
-              <Link href={getLocaledIntechRestingHomeUrl(currentLocale)}>
-                <Button onlyVisual className="flex items-center gap-x-3">
-                  <span className="inline-block">
-                    {locales[currentLocale]['back_to_home']}
-                  </span>
-                  <span className="size-5">
-                    <Home
-                      currentColor={CSSVAR['--color-text']}
-                      strokeWidth={1.5}
-                    />
-                  </span>
-                </Button>
-              </Link>
+    <>
+      <VerticalSpace times={2} />
+      <div className="mx-auto flex max-w-[calc(750px_+_4rem_+_300px_+_4rem)] justify-center px-8 max-sm:px-2">
+        <div className="grid grid-cols-[minmax(auto,750px)_300px] gap-16 max-lg:grid-cols-[minmax(auto,660px)] max-lg:gap-8">
+          <div>
+            <h1 className="mx-[10%] text-center text-[32px] leading-[1.4] font-bold">
+              {pageData.fields.title}
+            </h1>
+            <Space className="h-4" />
+            <p className="text-center">
+              <span>{locales[currentLocale]['article_date']}</span>
+              <span className="text-text-light italic">{date}</span>
+            </p>
+          </div>
+          <div className="max-lg:hidden" />
+          <div>
+            <div id="intro" className={twMerge('@container', paddindX)}>
+              <VerticalSpaceContainer>
+                {documentToReactComponents(bodyWithIds, renderOption)}
+              </VerticalSpaceContainer>
+              <VerticalSpace times={2} />
+              <div className="flex justify-center">
+                <Link href={getLocaledIntechRestingHomeUrl(currentLocale)}>
+                  <Button onlyVisual className="flex items-center gap-x-3">
+                    <span className="inline-block">
+                      {locales[currentLocale]['back_to_home']}
+                    </span>
+                    <span className="size-5">
+                      <Home
+                        currentColor={CSSVAR['--color-text']}
+                        strokeWidth={1.5}
+                      />
+                    </span>
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="max-w-[300px] max-lg:hidden">
+            <div className="sticky top-[150px]">
+              <TableOfContent
+                currentLocale={currentLocale}
+                slug={pageData.fields.slug}
+                data={tableContent}
+              />
             </div>
           </div>
         </div>
-        <div className="max-w-[300px] max-lg:hidden">
-          <div className="sticky top-[150px]">
-            <TableOfContent
-              currentLocale={currentLocale}
-              slug={pageData.fields.slug}
-              data={tableContent}
-            />
-          </div>
-        </div>
       </div>
-    </div>
+    </>
   )
 }

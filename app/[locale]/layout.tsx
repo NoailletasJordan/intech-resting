@@ -37,8 +37,8 @@ export default async function RootLayout({ children, params }: Props) {
             <div className="bg-background text-text relative">
               <BlogStyles>
                 <Header />
-                <VerticalSpace times={4} />
                 {children}
+                <VerticalSpace times={2} />
               </BlogStyles>
               <Separator />
               <div className="mx-auto w-full max-w-[1000px] px-4 max-sm:px-0">
