@@ -25,11 +25,12 @@ export async function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }))
 }
 
-export default async function IntechRestingHomePage({
-  params,
-}: {
-  params: { locale: string }
-}) {
+export default async function IntechRestingHomePage(
+  props0: {
+    params: Promise<{ locale: string }>
+  }
+) {
+  const params = await props0.params;
   const { locale } = params
 
   if (!process.env.CONTENTFUL_SPACE || !process.env.CONTENTFUL_ACCESS_TOKEN) {

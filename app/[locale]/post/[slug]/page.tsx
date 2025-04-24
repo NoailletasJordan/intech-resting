@@ -20,13 +20,14 @@ interface BlogPostFields {
 }
 
 type PageParams = {
-  params: {
+  params: Promise<{
     slug: string
     locale: TLOCALE
-  }
+  }>
 }
 
-export async function generateMetadata({ params }: PageParams) {
+export async function generateMetadata(props: PageParams) {
+  const params = await props.params;
   const { locale, slug } = params
 
   if (!process.env.CONTENTFUL_SPACE || !process.env.CONTENTFUL_ACCESS_TOKEN) {
@@ -77,7 +78,8 @@ export function generateStaticParams() {
   return LOCALES.flatMap((locale) => [{ locale, slug: 'example-slug' }])
 }
 
-export default async function IntechRestingPostPage({ params }: PageParams) {
+export default async function IntechRestingPostPage(props0: PageParams) {
+  const params = await props0.params;
   const { locale, slug } = params
 
   if (!process.env.CONTENTFUL_SPACE || !process.env.CONTENTFUL_ACCESS_TOKEN) {
