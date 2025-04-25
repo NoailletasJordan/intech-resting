@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.png',
   },
+  other: {
+    // https://github.com/darkreader/darkreader/blob/main/CONTRIBUTING.md#disabling-dark-reader-on-your-site
+    'darkreader-lock': 'true',
+  },
 }
 
 interface Props {
