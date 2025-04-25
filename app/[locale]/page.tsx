@@ -1,5 +1,5 @@
 import IntechRestingHome, {
-  Props,
+  Props as IntechRestingHomeProps,
 } from '@/components/pageComponents/IntechRestingHome'
 import { PartialContentfulFields } from '@/components/pageComponents/IntechRestingHome/components/PostsOverview'
 import { getLocaledIntechRestingHomeUrl, LOCALES, TLOCALE } from '@/constants'
@@ -67,7 +67,7 @@ export default async function IntechRestingHomePage(props0: {
       : 1,
   )
 
-  const props: Props = {
+  const props: IntechRestingHomeProps = {
     items: items as any,
     currentLocale: locale as (typeof LOCALES)[number],
   }

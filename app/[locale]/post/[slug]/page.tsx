@@ -1,5 +1,5 @@
 import IntechRestingPost, {
-  Props,
+  Props as IntechRestingPostProps,
 } from '@/components/pageComponents/InTechRestingPost'
 import { getLocaledIntechRestingPostUrl, LOCALES, TLOCALE } from '@/constants'
 import * as contentful from 'contentful'
@@ -97,7 +97,7 @@ export default async function IntechRestingPostPage(props0: PageParams) {
 
   const pageData = data.items[0]
 
-  const props: Props = {
+  const props: IntechRestingPostProps = {
     pageData: pageData as any,
     currentLocale: locale,
   }
