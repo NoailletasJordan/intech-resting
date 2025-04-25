@@ -2,35 +2,40 @@ import IntechRestingHome, {
   Props,
 } from '@/components/pageComponents/IntechRestingHome'
 import { PartialContentfulFields } from '@/components/pageComponents/IntechRestingHome/components/PostsOverview'
-import {
-  getLocaledIntechRestingHomeUrl,
-  getNONLocalIntechRestingHomeUrl,
-  LOCALES,
-} from '@/constants'
+import { getLocaledIntechRestingHomeUrl, LOCALES, TLOCALE } from '@/constants'
+import locales from '@/locales'
 import * as contentful from 'contentful'
-
-export const metadata = {
-  title: "Jordan Noailletas | Intech'Resting",
-  alternates: {
-    canonical: getLocaledIntechRestingHomeUrl('en'),
-    languages: {
-      en: getLocaledIntechRestingHomeUrl('en'),
-      fr: getLocaledIntechRestingHomeUrl('fr'),
-      'x-default': getNONLocalIntechRestingHomeUrl(),
-    },
-  },
-}
+import { Metadata } from 'next'
 
 export async function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }))
 }
 
-export default async function IntechRestingHomePage(
-  props0: {
-    params: Promise<{ locale: string }>
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: TLOCALE }
+}): Promise<Metadata> {
+  const locale = params.locale
+
+  return {
+    title: "Jordan Noailletas | Intech'Resting",
+    description: locales[locale].seo_home_description,
+    alternates: {
+      canonical: getLocaledIntechRestingHomeUrl('fr'),
+      languages: {
+        en: getLocaledIntechRestingHomeUrl('en'),
+        fr: getLocaledIntechRestingHomeUrl('fr'),
+        'x-default': getLocaledIntechRestingHomeUrl('fr'),
+      },
+    },
   }
-) {
-  const params = await props0.params;
+}
+
+export default async function IntechRestingHomePage(props0: {
+  params: Promise<{ locale: string }>
+}) {
+  const params = await props0.params
   const { locale } = params
 
   if (!process.env.CONTENTFUL_SPACE || !process.env.CONTENTFUL_ACCESS_TOKEN) {

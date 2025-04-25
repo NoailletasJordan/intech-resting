@@ -12,9 +12,9 @@ import { ReactNode } from 'react'
 import '../../globals.css'
 import Header from '../components/Header'
 import LinksAndCopyrights from '../components/LinksAndCopyrights'
+
 export const metadata: Metadata = {
-  title: 'InTech Resting',
-  description: 'A blog about tech, programming and web development',
+  title: 'InTech/ Resting',
   icons: {
     icon: '/favicon.png',
   },
@@ -26,11 +26,9 @@ interface Props {
 }
 
 export default async function Layout(props: Props) {
-  const params = await props.params;
+  const params = await props.params
 
-  const {
-    children
-  } = props;
+  const { children } = props
 
   const resolvedParams = params
 

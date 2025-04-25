@@ -13,6 +13,8 @@ export default {
     socials_label: 'Réseaux',
     back_to_home: "Retour à l'accueil",
     footer_email_copied: 'Adresse copiée !',
+    seo_home_description:
+      'Une plateforme pour partager mes recherches et opinions sur des sujets du web',
   },
   en: {
     table_of_content: 'TABLE OF CONTENTS',
@@ -28,5 +30,7 @@ export default {
     socials_label: 'Socials',
     back_to_home: 'Back to Home',
     footer_email_copied: 'Email copied !',
+    seo_home_description:
+      'A platform to share web-related things while teaching a thing or two',
   },
 } as const

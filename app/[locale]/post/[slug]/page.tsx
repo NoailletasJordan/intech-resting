@@ -1,23 +1,8 @@
 import IntechRestingPost, {
   Props,
 } from '@/components/pageComponents/InTechRestingPost'
-import {
-  getLocaledIntechRestingPostUrl,
-  getNONLocaledIntechRestingPostUrl,
-  LOCALES,
-  TLOCALE,
-} from '@/constants'
+import { getLocaledIntechRestingPostUrl, LOCALES, TLOCALE } from '@/constants'
 import * as contentful from 'contentful'
-
-// Define the content type for blog posts
-interface BlogPostFields {
-  slug: string
-  title: string
-  description: string
-  publishedDate: string
-  body: any // Using any for simplicity
-  thumbnail?: any
-}
 
 type PageParams = {
   params: Promise<{
@@ -27,7 +12,7 @@ type PageParams = {
 }
 
 export async function generateMetadata(props: PageParams) {
-  const params = await props.params;
+  const params = await props.params
   const { locale, slug } = params
 
   if (!process.env.CONTENTFUL_SPACE || !process.env.CONTENTFUL_ACCESS_TOKEN) {
@@ -61,20 +46,20 @@ export async function generateMetadata(props: PageParams) {
       description: pageData.fields.description,
     },
     alternates: {
-      canonical: getLocaledIntechRestingPostUrl('en', slug),
+      canonical: getLocaledIntechRestingPostUrl('fr', slug),
       languages: {
         en: getLocaledIntechRestingPostUrl('en', slug),
         fr: getLocaledIntechRestingPostUrl('fr', slug),
-        'x-default': getNONLocaledIntechRestingPostUrl({ postId: slug }),
+        'x-default': getLocaledIntechRestingPostUrl('fr', slug),
       },
     },
   }
 }
 
 export async function generateStaticParams() {
-  // if (!process.env.CONTENTFUL_SPACE || !process.env.CONTENTFUL_ACCESS_TOKEN) {
-  //   throw new Error(`Contentful env variables not set`)
-  // }
+  if (!process.env.CONTENTFUL_SPACE || !process.env.CONTENTFUL_ACCESS_TOKEN) {
+    throw new Error(`Contentful env variables not set`)
+  }
   const client = contentful.createClient({
     space: process.env.CONTENTFUL_SPACE!,
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
@@ -90,10 +75,9 @@ export async function generateStaticParams() {
   return LOCALES.flatMap((locale) => slugs.map((slug) => ({ locale, slug })))
 }
 export const dynamicParams = false
-// export const dynamicParams = true // temp
 
 export default async function IntechRestingPostPage(props0: PageParams) {
-  const params = await props0.params;
+  const params = await props0.params
   const { locale, slug } = params
 
   if (!process.env.CONTENTFUL_SPACE || !process.env.CONTENTFUL_ACCESS_TOKEN) {

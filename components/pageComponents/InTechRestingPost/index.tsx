@@ -22,8 +22,7 @@ export interface ContentfulFields {
   slug: string
   title: string
   description: string
-  thumbnail: any
-  publishedDate: Date
+  publishedDate?: string
   body: any
 }
 
@@ -36,7 +35,7 @@ export interface Props {
 }
 
 export default function IntechRestingPost({ pageData, currentLocale }: Props) {
-  const rawDate = pageData.fields.publishedDate as string | undefined
+  const rawDate = pageData.fields.publishedDate
   const date = rawDate && formatDate(rawDate, currentLocale)
   const bodyWithIds = useMemo(() => {
     const newBody = JSON.parse(JSON.stringify(pageData.fields.body))
