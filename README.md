@@ -1,54 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with
-[`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Intech' Resting
 
-## Getting Started
+A platform to share web-related things while teaching a thing or two.
 
-First, run the development server:
+### Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **CMS Integration:** Simplified content management, linked to a frontend
+  framework.
+- **Internationalization:** Post available in both French and English.
+- **SEO-Ready:** Dynamic metadatas, aligned with the language.
 
-```
-CONTENTFUL_SPACE=
-CONTENTFUL_ACCESS_TOKEN=
-CONTENTFUL_DRAFT_PREVIEW_TOKEN=
-```
+### Snapshot
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the
-result.
+![Image](https://github.com/user-attachments/assets/d615a70f-ebdf-4925-87af-73ed92cf9c99)
 
-You can start editing the page by modifying `app/page.tsx`. The page
-auto-updates as you edit the file.
+## Behind the scene
 
-This project uses
-[`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to
-automatically optimize and load Inter, a custom Google Font.
+### SEO and Rendering Method
 
-## Learn More
+This project uses a hybrid approach to rendering, with two types of pages:
 
-To learn more about Next.js, take a look at the following resources:
+- **Homepage**: Lists available posts.
+- **Post Pages**: Show full post content.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The rendering methods used are:
 
-You can check out
-[the Next.js GitHub repository](https://github.com/vercel/next.js/) - your
-feedback and contributions are welcome!
+1. **Static Generation**: Prebuilt pages at build time.
+2. **Server-Side Rendering (SSR)**: Pages built on client request.
+3. **Client-Side Rendering (CSR)**: Pages built on the client-side.
 
-## Deploy on Vercel
+For SEO and localization, a solution was devised:
 
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
+- **Localized Pages**: Each locale has a statically generated page at build time
+  (e.g., `/fr/<postID>`).
+- **Generic URL**: A server-side rendered page handles locale redirects (e.g.,
+  `/postID`).
 
-Check out our
-[Next.js deployment documentation](https://nextjs.org/docs/deployment) for more
-details.
+This ensures SEO-friendly, locale-specific pages, avoids CMS fetching on
+request, and keeps content available even with CMS issues.
+
+### Context of the making
+
+The way we consume blog posts and articles has shifted in recent years. What was
+once use to share resources and tutorials, got devanced by AI chatbot, that
+deliver such informations instantly.
+
+It is however incorrect to assume blogs became irrelevant. I came across
+incredible value in recent posts by [Emil Kowalski](https://emilkowal.ski/),
+[Nanda Syahrasyad](https://www.nan.fyi/) or
+[Josh W. Comeau](https://www.joshwcomeau.com/), wich all share common
+denominators.
+
+They all evolved to deliver:
+
+1. Deep techincal knowledge.
+2. Openly opinionated viewpoints (based on experiences).
+3. Top-tier visuals and exemples.
+
+Essentially, the opposite of AI, that is about highlighting tradeoffs on surface
+level subjects. It’s with those new principles in mind that I gave my old blog a
+much-needed revamp.
