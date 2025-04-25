@@ -11,11 +11,12 @@ export async function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }))
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { locale: TLOCALE }
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ locale: TLOCALE }>
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const locale = params.locale
 
   return {
