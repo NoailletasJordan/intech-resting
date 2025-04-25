@@ -76,7 +76,7 @@ function useActiveIndexOnScroll(domElements: HTMLElement[]): number {
     return () => {
       clearInterval(interval)
     }
-  }, [domElements])
+  }, [domElements, getCurrentIndexScroll])
 
   return activeIndex
 }

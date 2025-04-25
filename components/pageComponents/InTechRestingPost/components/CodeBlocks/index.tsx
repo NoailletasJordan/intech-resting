@@ -132,7 +132,7 @@ export default function CodeBlock({ highlightConfig, text }: Props) {
                         <div
                           className="bg-text-light pointer-events-none absolute top-0 right-0 bottom-0 left-0 h-full opacity-[0.05]"
                           style={{
-                            width: Number(ref.current?.scrollWidth || 0) - 1,
+                            width: Number(ref.current?.scrollWidth ?? 0) - 1,
                           }}
                         />
                       )}

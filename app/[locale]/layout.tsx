@@ -32,7 +32,7 @@ export default async function Layout(props: Props) {
 
   const resolvedParams = params
 
-  const locale = ((resolvedParams && resolvedParams.locale) || 'en') as TLOCALE
+  const locale = (resolvedParams.locale ?? 'en') as TLOCALE
 
   return (
     <html lang={locale}>

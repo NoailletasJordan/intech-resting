@@ -5,7 +5,7 @@ import { TLOCALE } from '@/constants'
 import * as contentful from 'contentful'
 import { Metadata } from 'next'
 
-type PageParams = {
+interface IPageParams {
   params: Promise<{
     slug: string
     locale: TLOCALE
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   robots: 'noindex, nofollow',
 }
 
-export default async function IntechRestingPostPage(props0: PageParams) {
+export default async function IntechRestingPostPage(props0: IPageParams) {
   const params = await props0.params
   const { locale, slug } = params
 

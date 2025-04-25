@@ -1,7 +1,7 @@
 import FramerateComparison from './AnimationOptimisations/FramerateComparison'
 import PortfolioTitleIcon from './PortfolioItem/PortfolioTitleIcon'
 
-export default {
+const customComponents = {
   PortfolioItem: {
     PortfolioTitleIcon,
   },
@@ -9,3 +9,5 @@ export default {
     FramerateComparison,
   },
 }
+
+export default customComponents

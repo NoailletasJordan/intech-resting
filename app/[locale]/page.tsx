@@ -7,16 +7,14 @@ import locales from '@/locales'
 import * as contentful from 'contentful'
 import { Metadata } from 'next'
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }))
 }
 
-export async function generateMetadata(
-  props: {
-    params: Promise<{ locale: TLOCALE }>
-  }
-): Promise<Metadata> {
-  const params = await props.params;
+export async function generateMetadata(props: {
+  params: Promise<{ locale: TLOCALE }>
+}): Promise<Metadata> {
+  const params = await props.params
   const locale = params.locale
 
   return {

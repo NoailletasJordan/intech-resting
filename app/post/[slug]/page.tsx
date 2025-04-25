@@ -6,16 +6,14 @@ import { Metadata } from 'next'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-type PageParams = {
-  params: {
-    slug: string
-  }
+interface IPageParams {
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({
   params,
-}: PageParams): Promise<Metadata> {
-  const { slug } = params
+}: IPageParams): Promise<Metadata> {
+  const { slug } = await params
 
   return {
     alternates: {
@@ -29,8 +27,8 @@ export async function generateMetadata({
   }
 }
 
-export default async function PostRedirect({ params }: PageParams) {
-  const { slug } = params
+export default async function PostRedirect({ params }: IPageParams) {
+  const { slug } = await params
 
   // Get the Accept-Language header
   const headersList = await headers()

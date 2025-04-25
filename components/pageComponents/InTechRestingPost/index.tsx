@@ -35,7 +35,8 @@ export interface Props {
 }
 
 export default function IntechRestingPost({ pageData, currentLocale }: Props) {
-  const rawDate = pageData.fields.publishedDate
+  const rawDate = pageData.fields
+    .publishedDate as ContentfulFields['publishedDate']
   const date = rawDate && formatDate(rawDate, currentLocale)
   const bodyWithIds = useMemo(() => {
     const newBody = JSON.parse(JSON.stringify(pageData.fields.body))

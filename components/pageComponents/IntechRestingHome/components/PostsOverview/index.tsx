@@ -48,12 +48,12 @@ export default function PostsOverview({
 
 const getItemsByYear = (items: Props['items']) => {
   const sorted = items.toSorted(
-    (a, b) => b.fields.publishedDate - a.fields.publishedDate,
+    (a, b) => b.fields.publishedDate! - a.fields.publishedDate!,
   )
   const yearMap = new Map<number, typeof items>()
 
   sorted.forEach((item) => {
-    const year = new Date(item.fields.publishedDate).getFullYear()
+    const year = new Date(item.fields.publishedDate!).getFullYear()
 
     if (yearMap.has(year)) {
       yearMap.get(year)!.push(item)

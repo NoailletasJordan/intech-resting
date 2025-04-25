@@ -40,6 +40,7 @@
     "@typescript-eslint/dot-notation": "off",
     "react/no-unescaped-entities": "off",
     "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-base-to-string": "off",
     "@typescript-eslint/no-floating-promises": "warn",
     "@typescript-eslint/no-confusing-void-expression": "warn",
     "@typescript-eslint/prefer-nullish-coalescing": "warn",

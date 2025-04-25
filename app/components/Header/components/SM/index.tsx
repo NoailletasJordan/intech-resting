@@ -75,7 +75,9 @@ export default function HeaderSM({
             </Button>
           </Link>
           <Link
-            onClick={() => toggle()}
+            onClick={() => {
+              toggle()
+            }}
             href={getLocaledIntechRestingHomeUrl(currentLocale)}
           >
             <Button onlyVisual className="px-4 py-1 text-[150%]">

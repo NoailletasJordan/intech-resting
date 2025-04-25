@@ -63,7 +63,7 @@ export const getIsExternalLink = (url: string): boolean => {
   try {
     const link = new URL(url, window.location.origin)
     return link.hostname !== window.location.hostname
-  } catch (e) {
+  } catch (_e) {
     console.error('Invalid URL provided:', url)
     return false
   }

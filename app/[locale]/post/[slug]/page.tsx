@@ -4,14 +4,14 @@ import IntechRestingPost, {
 import { getLocaledIntechRestingPostUrl, LOCALES, TLOCALE } from '@/constants'
 import * as contentful from 'contentful'
 
-type PageParams = {
+interface IPageParams {
   params: Promise<{
     slug: string
     locale: TLOCALE
   }>
 }
 
-export async function generateMetadata(props: PageParams) {
+export async function generateMetadata(props: IPageParams) {
   const params = await props.params
   const { locale, slug } = params
 
@@ -61,8 +61,8 @@ export async function generateStaticParams() {
     throw new Error(`Contentful env variables not set`)
   }
   const client = contentful.createClient({
-    space: process.env.CONTENTFUL_SPACE!,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
+    space: process.env.CONTENTFUL_SPACE,
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
   })
 
   const data = await client.getEntries({
@@ -76,7 +76,7 @@ export async function generateStaticParams() {
 }
 export const dynamicParams = false
 
-export default async function IntechRestingPostPage(props0: PageParams) {
+export default async function IntechRestingPostPage(props0: IPageParams) {
   const params = await props0.params
   const { locale, slug } = params
 
