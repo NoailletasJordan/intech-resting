@@ -11,7 +11,7 @@ export const metadata = {
   title: "Jordan Noailletas | Intech'Resting",
   description: locales.en.posts_section_title,
   alternates: {
-    canonical: getLocaledIntechRestingHomeUrl('en'),
+    canonical: getLocaledIntechRestingHomeUrl('fr'),
     languages: {
       en: getLocaledIntechRestingHomeUrl('en'),
       fr: getLocaledIntechRestingHomeUrl('fr'),
