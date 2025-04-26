@@ -10,7 +10,7 @@ export default function MenuButton({ isOpen, toggle }: Props) {
   return (
     <button
       onClick={toggle}
-      className="border-border-active absolute top-10 right-5 z-30 flex size-12 items-center justify-center rounded-full border transition-colors min-sm:hidden"
+      className="border-border-active fixed top-11 right-5 z-30 flex size-12 items-center justify-center rounded-full border transition-colors min-sm:hidden"
       style={{
         backgroundColor: isOpen
           ? themeIntechResting['--color-background-dark']

@@ -16,11 +16,20 @@ export function VerticalSpaceContainer({ children }: { children: ReactNode }) {
   return <div className={spaceContainerClasses}>{children}</div>
 }
 
-export function VerticalSpace({ times = 1 }: { times?: number }) {
+export function VerticalSpace({
+  times = 1,
+  classNames = '',
+}: {
+  times?: number
+  classNames?: string
+}) {
   return (
     <>
       {Array.from({ length: times }).map((_, index) => (
-        <span key={index} className={twMerge('block', spaceClasses)} />
+        <span
+          key={index}
+          className={twMerge('block', spaceClasses, classNames)}
+        />
       ))}
     </>
   )

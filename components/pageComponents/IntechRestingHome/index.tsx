@@ -26,7 +26,7 @@ const containerClasses = 'max-w-[1000px] mx-auto px-4 max-sm:px-0'
 export default function IntechRestingHome({ items, currentLocale }: Props) {
   return (
     <Container>
-      <VerticalSpace times={2} />
+      <VerticalSpace times={2} classNames="max-sm:h-12" />
       <Hero />
       <VerticalSpace times={3} />
       <EntranceWrapper>

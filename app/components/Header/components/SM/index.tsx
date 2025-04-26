@@ -12,6 +12,7 @@ import locales from '@/locales'
 import { useDisclosure } from '@mantine/hooks'
 import { motion, Variants } from 'framer-motion'
 import Link from 'next/link'
+import { useEffect } from 'react'
 import MenuButton from './components/MenuButton'
 
 interface Props {
@@ -32,6 +33,7 @@ export default function HeaderSM({
   oppositeLocalePath,
 }: Props) {
   const [isOpen, { toggle }] = useDisclosure(false)
+  useBodyScrollLock(isOpen)
 
   const variants: Variants = {
     open: {
@@ -51,7 +53,7 @@ export default function HeaderSM({
   return (
     <>
       <motion.div
-        className="bg-background-dark absolute right-0 z-10 h-[100dvh] w-[100vw] min-sm:hidden"
+        className="bg-background-dark fixed right-0 z-10 h-[100dvh] w-[100vw] min-sm:hidden"
         variants={variants}
         initial="closed"
         animate={isOpen ? 'open' : 'closed'}
@@ -60,7 +62,7 @@ export default function HeaderSM({
           <Link href={portfolioUrl}>
             <Button
               onlyVisual
-              className="absolute top-12 left-4 flex items-center gap-x-2"
+              className="absolute top-13 left-4 flex items-center gap-x-2"
             >
               <span className="inline-block">
                 {locales[currentLocale].visit_portfolio}
@@ -140,4 +142,18 @@ function SocialButton({
       </Button>
     </Link>
   )
+}
+
+const useBodyScrollLock = (isLocked: boolean) => {
+  useEffect(() => {
+    if (isLocked) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isLocked])
 }

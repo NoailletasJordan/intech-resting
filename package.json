@@ -36,6 +36,7 @@
     "tailwindcss": "4.1.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.52.0",
     "@tailwindcss/postcss": "^4.1.4",
     "@types/node": "^20",
     "eslint": "^9.18.0",
