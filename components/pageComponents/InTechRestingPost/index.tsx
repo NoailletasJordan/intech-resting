@@ -88,7 +88,10 @@ export default function IntechRestingPost({ pageData, currentLocale }: Props) {
       <div className="mx-auto flex max-w-[calc(750px_+_4rem_+_300px_+_4rem)] justify-center px-8 max-sm:px-2">
         <div className="grid grid-cols-[minmax(auto,750px)_300px] gap-16 max-lg:grid-cols-[minmax(auto,660px)] max-lg:gap-8">
           <div>
-            <h1 className="mx-[10%] text-center text-[32px] leading-[1.4] font-bold">
+            <h1
+              data-testid="post-title"
+              className="mx-[10%] text-center text-[32px] leading-[1.4] font-bold"
+            >
               {pageData.fields.title}
             </h1>
             <Space className="h-4" />

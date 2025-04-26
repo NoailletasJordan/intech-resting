@@ -10,7 +10,7 @@ interface Props {
 
 export default function PostOverview({ className = '', title, url }: Props) {
   return (
-    <Link href={url}>
+    <Link aria-label="post-link" href={url}>
       <span
         className={twMerge(
           'hover:bg-surface-light active:bg-surface-light block rounded-lg pt-2 transition-colors duration-300',
