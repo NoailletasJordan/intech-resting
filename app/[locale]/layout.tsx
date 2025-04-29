@@ -8,10 +8,18 @@ import { themeIntechResting } from '@/components/pageComponents/ThemeHandler/con
 import { TLOCALE } from '@/constants'
 import LanguageWrapper from '@/contexts/language-context/wrapper'
 import { Metadata } from 'next'
+import localFont from 'next/font/local'
 import { ReactNode } from 'react'
 import '../../globals.css'
 import Header from '../components/Header'
 import LinksAndCopyrights from '../components/LinksAndCopyrights'
+
+export const junni = localFont({
+  src: '../../preloaded-fonts/junni.ttf',
+  display: 'swap',
+  variable: '--font-junni',
+  preload: true,
+})
 
 export const metadata: Metadata = {
   title: 'InTech/ Resting',

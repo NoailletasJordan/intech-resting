@@ -95,15 +95,6 @@
     line-gap-override: 0%;
   }
 
-  @font-face {
-    font-family: 'junni';
-    font-style: normal;
-    font-weight: 400;
-    src: url(/fonts/junni.ttf) format('truetype');
-    ascent-override: 90%;
-    descent-override: 10%;
-    line-gap-override: 0%;
-  }
 }
 
 @layer utilities {
